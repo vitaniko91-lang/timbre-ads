@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+/* Fonts are self-hosted, not pulled from the Fontshare CDN like the TIMBRE site.
+   Two reasons: html-to-image can only inline @font-face rules it is allowed to
+   read, and a cross-origin stylesheet throws — so a CDN font silently exports as
+   a fallback face. Local woff2 also removes a render-blocking third-party hop. */
+@font-face {
+  font-family: "Clash Display";
+  src: url("/fonts/clash-display-600.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Clash Display";
+  src: url("/fonts/clash-display-700.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "General Sans";
+  src: url("/fonts/general-sans-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "General Sans";
+  src: url("/fonts/general-sans-500.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Inherited verbatim from the TIMBRE brand project (cases/timbre/src/index.css).
+   A campaign is the brand's own voice in a paid placement, so the palette and the
+   type ramp are not re-decided here — only the composition rules are new. */
+@theme {
+  --color-bg: #F4F6FF;
+  --color-panel: #E9EDFF;
+  --color-ink: #0E1130;
+  --color-muted: #5B5F7A;
+  --color-indigo: #5B6CFF;
+  --color-magenta: #FF4DD2;
+  --color-cyan: #7EE8FF;
+  --color-gold: #FFD23D;
+  --color-mint: #78FFC8;
+  --font-display: "Clash Display", system-ui, sans-serif;
+  --font-sans: "General Sans", system-ui, sans-serif;
+  --radius-glass: 22px;
+  --radius-pill: 100px;
+}
+
+:root { color-scheme: light; }
+html, body { background: var(--color-bg); color: var(--color-ink); }
+body { font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
+:focus-visible { outline: 2px solid var(--color-indigo); outline-offset: 3px; }
+
+/* Numbers that change at runtime (the combination counter, export progress) must
+   not reflow the line on every tick — house rule, design.md → Typography. */
+.tabular { font-variant-numeric: tabular-nums; }
